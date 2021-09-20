@@ -22,7 +22,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('phone',10);            
             $table->foreignId('category_id');
             $table->enum('delivery',['y','n']);
-            $table->string('schedule',10)->nullable();
+            $table->string('schedule',20)->nullable();
             $table->decimal('latitude',7,4)->nullable();
             $table->decimal('longitude',7,4)->nullable();
             $table->string('logo',256)->nullable();
