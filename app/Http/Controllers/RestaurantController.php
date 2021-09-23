@@ -48,7 +48,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+<<<<<<< HEAD
         return view('restaurants.show',compact('restaurant'));
+=======
+        //
+>>>>>>> a31e5a4556a334ba71918d4bf37c55af30c386c4
     }
 
     /**
