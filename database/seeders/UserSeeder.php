@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => 'Santiago Galvis Tabares',
-                'email' => 'santiagogalvist@auotnoma.edu.co',
+                'email' => 'santiagogalvist@autonoma.edu.co',
                 'password' => Hash::make('12345678'),// La cifra
                 'type' => 'admin',
                 'created_at' => Carbon::now(),
