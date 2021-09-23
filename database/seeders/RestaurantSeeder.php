@@ -53,6 +53,18 @@ class RestaurantSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+
+            [
+                'user_id' => 1,
+                'name' => 'Restaurante 4',
+                'description' => 'Restaurante 4 Descripción',
+                'city' => 'Cali',
+                'phone' => '0180000000',
+                'category_id' => 3,
+                'delivery' => 'y',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
