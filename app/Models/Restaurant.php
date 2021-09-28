@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Restaurant extends Model
 {
     use HasFactory;
@@ -39,5 +40,10 @@ class Restaurant extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeOwned($query, $owner)
+    {
+        return $query->where('user_id', '=', $owner);
     }
 }
