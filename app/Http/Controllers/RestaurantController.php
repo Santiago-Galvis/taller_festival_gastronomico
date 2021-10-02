@@ -124,7 +124,11 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        
+        $restaurant -> delete();
+
+        Session::flash('success', 'Restaurante Removido Exitosamente');
+
+        return redirect(route('home'));
     }
 
     public function showFrontPage()
