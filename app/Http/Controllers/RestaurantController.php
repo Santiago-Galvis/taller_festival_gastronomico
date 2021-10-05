@@ -133,7 +133,7 @@ class RestaurantController extends Controller
 
     public function showFrontPage()
     {
-        $restaurants = Restaurant::orderBy('name', 'asc')->get();
+        $restaurants = Restaurant::orderBy('name', 'asc')->Paginate(8);
 
         //$restaurantsOwner1 = Restaurant::where('user_id', '=', '1') -> orderBy('name', 'asc')-> get(); //Traer todos los restaurantes de un usuario o owner puntual
 
