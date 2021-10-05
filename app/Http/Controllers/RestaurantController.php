@@ -32,6 +32,12 @@ class RestaurantController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->type != 'admin' & Auth::user()->type != 'owner'){
+            Session::flash('failure', 'El usuario no tiene permisos para crear restaurantes.');
+
+            return redirect(route('home'));
+        }
+
         $categories = Category::orderBy('name', 'asc')->pluck('name', 'id');
 
         return view('restaurants.create',compact('categories'));
@@ -45,7 +51,6 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
-
         $input =$request->all();
 
         /*$validated = $request->validate([
@@ -131,12 +136,21 @@ class RestaurantController extends Controller
         return redirect(route('restaurants.index'));
     }
 
-    public function showFrontPage()
-    {
-        $restaurants = Restaurant::orderBy('name', 'asc')->Paginate(8);
+    public function showFrontPage(Request $request)
+    {        
+        $filter = $request['filter'] ?? null;
+
+        if(!isset($request['filter'])){
+            $restaurants = Restaurant::orderBy('name', 'asc')->Paginate(8);
+        }else{
+            $restaurants = Restaurant::orderBy('name', 'asc')->where('category_id', '=', $request['filter'])->Paginate(8);
+            $restaurants->appends(['filter' => $filter]);
+        }
+            
+        $categories = Category::orderBy('name', 'asc')->pluck('name','id');
 
         //$restaurantsOwner1 = Restaurant::where('user_id', '=', '1') -> orderBy('name', 'asc')-> get(); //Traer todos los restaurantes de un usuario o owner puntual
 
-        return view('front_page.index', compact('restaurants'));
+        return view('front_page.index', compact('restaurants','categories','filter'));
     }
 }
